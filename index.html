@@ -15,18 +15,87 @@
       align-items: center;
       justify-content: center;
       font-family: 'Georgia', serif;
+      padding: 32px 20px;
+    }
+
+    .panels {
+      width: 100%;
+      max-width: 1080px;
+      display: flex;
+      flex-direction: row;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .panel {
+      flex: 1 1 0;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .panel-label {
+      color: #e8d48a;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 12px;
+      opacity: 0.85;
+    }
+
+    .photo-frame {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.15);
     }
 
     .photo {
       width: 100%;
-      max-width: 720px;
+      height: 100%;
+      object-fit: cover;
       display: block;
     }
 
+    .video-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .live-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #e8534a;
+      margin-right: 7px;
+      vertical-align: middle;
+      animation: pulse 1.6s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.35; }
+    }
+
     .caption {
-      margin-top: 28px;
+      margin-top: 32px;
       text-align: center;
-      padding: 0 20px 40px;
+      padding: 0 20px;
     }
 
     .caption a {
@@ -42,15 +111,48 @@
     .caption a:hover {
       border-color: #e8d48a;
     }
+
+    @media (max-width: 760px) {
+      .panels {
+        flex-direction: column;
+        gap: 36px;
+      }
+
+      .photo-frame {
+        aspect-ratio: 4 / 3;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <img
-    class="photo"
-    src="Images/The Half Mile at Terra Cotta GRAM.JPEG"
-    alt="The Half Mile at Terra Cotta"
-  />
+  <div class="panels">
+
+    <div class="panel">
+      <p class="panel-label">The Vision</p>
+      <div class="photo-frame">
+        <img
+          class="photo"
+          src="Images/The Half Mile at Terra Cotta GRAM.JPEG"
+          alt="The Half Mile at Terra Cotta"
+        />
+      </div>
+    </div>
+
+    <div class="panel">
+      <p class="panel-label"><span class="live-dot"></span>Live From The Site</p>
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/-SouDGRw7Ik?autoplay=1&mute=1&playsinline=1"
+          title="The Half Mile at Terra Cotta - Live Construction Cam"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+
+  </div>
 
   <div class="caption">
     <a href="https://www.instagram.com/thehalfmile" target="_blank" rel="noopener">
