@@ -20,27 +20,19 @@
 
     .panels {
       width: 100%;
-      max-width: 1400px;
+      max-width: 1080px;
       display: flex;
       flex-direction: row;
       gap: 28px;
-      align-items: flex-start;
-      justify-content: center;
+      align-items: stretch;
     }
 
     .panel {
+      flex: 1 1 0;
       display: flex;
       flex-direction: column;
       min-width: 0;
     }
-
-    /* Flex-grow set to each panel's own media aspect ratio (width/height).
-       Because both frames render at width:100% of their panel and use that
-       same aspect ratio to derive height, distributing width in this
-       proportion makes both frames land at the same height automatically -
-       no matter the container width. */
-    .panel.vision { flex: 1.2 1 0; }
-    .panel.live { flex: 1.7778 1 0; }
 
     .panel-label {
       color: #e8d48a;
@@ -53,26 +45,24 @@
     }
 
     .photo-frame {
-      width: 100%;
-      aspect-ratio: 1.2 / 1;
+      flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
       background: rgba(0, 0, 0, 0.15);
-      min-width: 0;
     }
 
     .photo {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       display: block;
     }
 
     .video-frame {
       position: relative;
       width: 100%;
-      aspect-ratio: 16 / 9;
+      flex: 1;
       background: #000;
       overflow: hidden;
     }
@@ -128,22 +118,14 @@
         gap: 36px;
       }
 
-      .panel.vision,
-      .panel.live {
-        flex: none;
-        width: 100%;
-      }
-
       .photo-frame {
         aspect-ratio: 4 / 3;
-      }
-
-      .photo {
-        object-fit: cover;
+        flex: none;
       }
 
       .video-frame {
         aspect-ratio: 16 / 9;
+        flex: none;
       }
     }
   </style>
@@ -152,7 +134,7 @@
 
   <div class="panels">
 
-    <div class="panel vision">
+    <div class="panel">
       <p class="panel-label">The Vision</p>
       <div class="photo-frame">
         <img
@@ -163,7 +145,7 @@
       </div>
     </div>
 
-    <div class="panel live">
+    <div class="panel">
       <p class="panel-label"><span class="live-dot"></span>Live From The Site</p>
       <div class="video-frame">
         <iframe
